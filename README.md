@@ -15,7 +15,7 @@
 
 1. 移除对react的引用
 2. 增加 `miniprogram` 导出.
-3. 移除了 `redux`, `devtool` 中间件.
+3. 移除了 `redux`, `devtool`, `immer` 中间件.
 
 
 ## Using
