@@ -1,3 +1,3 @@
-export * from './vanilla.ts'
+export * from './vanilla'
 
-export {} from './middleware/subscribeWithSelector.ts'
+export { subscribeWithSelector } from './middleware/subscribeWithSelector'
