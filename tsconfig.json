@@ -13,7 +13,6 @@
     "verbatimModuleSyntax": true,
     "declaration": true,
     "isolatedDeclarations": true,
-    "types": ["@testing-library/jest-dom"],
     "noEmit": true,
     "baseUrl": ".",
     "paths": {
