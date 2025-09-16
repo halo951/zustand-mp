@@ -8,21 +8,30 @@ export default defineConfig(() => {
         build: {
             lib: {
                 entry: 'src/index.ts',
-                formats: ['cjs', 'es'] as any,
+                formats: ['es'] as any,
                 fileName(_, entryName) {
                     return `${entryName}.js`
                 }
             },
-            outDir: 'dist',
+            outDir: 'miniprogram',
             minify: false,
             sourcemap: true,
-            emptyOutDir: true
+            emptyOutDir: true,
+
+            rollupOptions: {
+                input: {
+                    index: resolve(__dirname, 'src/index.ts'),
+                    middleware: resolve(__dirname, 'src/middleware.ts'),
+                    shallow: resolve(__dirname, 'src/shallow.ts'),
+                    vanilla: resolve(__dirname, 'src/vanilla.ts')
+                }
+            }
         },
         plugins: [
             dts({
                 entryRoot: 'src',
-                outDir: 'dist/types',
-                insertTypesEntry: true // 自动生成 `index.d.ts`
+                outDir: 'miniprogram',
+                insertTypesEntry: true
             })
         ]
     }

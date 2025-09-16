@@ -20,8 +20,41 @@
 
 ## Using
 
+- app.json
+```json
+{
+  "usingComponents": {
+    "zustand": "zustand/index"
+  }
+}
+```
+
+- app.ts
+
 ```ts
+import { create } from 'zustand'
+
+// export const useStore = create(...) 
+
+```
+
+- use middleware
+
+```json
+{
+  "usingComponents": {
+    "zustand/middleware": "zustand/middleware"
+  }
+}  
+```
 
 
+- app.ts
+
+```ts
+import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
+
+// export const useStore = create()(persist((set) => {}, {}))  
 
 ```

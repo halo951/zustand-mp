@@ -1,58 +1,32 @@
 {
   "name": "zustand",
-  "description": "在原生微信小程序中, 使用 zustand 管理状态.",
+  "description": "在原生微信小程序中, 使用 zustand 进行状态管理.",
   "private": true,
-  "type": "commonjs",
+  "type": "module",
   "version": "5.0.8",
-  "main": "./index.js",
-  "types": "./index.d.ts",
-  "miniprogram": "dist",
-  "typesVersions": {
-    ">=4.5": {
-      "esm/*": [
-        "esm/*"
-      ],
-      "*": [
-        "*"
-      ]
-    },
-    "*": {
-      "esm/*": [
-        "ts_version_4.5_and_above_is_required.d.ts"
-      ],
-      "*": [
-        "ts_version_4.5_and_above_is_required.d.ts"
-      ]
-    }
-  },
+  "main": "./miniprogram/index.js",
+  "types": "./miniprogram/index.d.ts",
+  "miniprogram": "miniprogram",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "react-native": {
-        "types": "./index.d.ts",
-        "default": "./index.js"
-      },
       "import": {
-        "types": "./esm/index.d.mts",
-        "default": "./esm/index.mjs"
+        "types": "./miniprogram/index.d.ts",
+        "default": "./miniprogram/index.js"
       },
       "default": {
-        "types": "./index.d.ts",
-        "default": "./index.js"
+        "types": "./miniprogram/index.d.ts",
+        "default": "./miniprogram/index.js"
       }
     },
     "./*": {
-      "react-native": {
-        "types": "./*.d.ts",
-        "default": "./*.js"
-      },
       "import": {
-        "types": "./esm/*.d.mts",
-        "default": "./esm/*.mjs"
+        "types": "./miniprogram/*.d.ts",
+        "default": "./miniprogram/*.js"
       },
       "default": {
-        "types": "./*.d.ts",
-        "default": "./*.js"
+        "types": "./miniprogram/*.d.ts",
+        "default": "./miniprogram/*.js"
       }
     }
   },
@@ -62,18 +36,7 @@
   "sideEffects": false,
   "scripts": {
     "prebuild": "shx rm -rf dist",
-    "build": "pnpm run prebuild && pnpm run \"/^build:.*/\" && pnpm run postbuild",
-    "build:base": "rollup -c",
-    "build:vanilla": "rollup -c --config-vanilla",
-    "build:middleware": "rollup -c --config-middleware",
-    "build:middleware:immer": "rollup -c --config-middleware_immer",
-    "build:shallow": "rollup -c --config-shallow",
-    "build:vanilla:shallow": "rollup -c --config-vanilla_shallow",
-    "postbuild": "pnpm run patch-d-ts",
-    "fix": "pnpm run fix:lint && pnpm run fix:format",
-    "fix:format": "prettier . --write",
-    "fix:lint": "eslint . --fix",
-    "patch-d-ts": "node --input-type=module -e \"import { entries } from './rollup.config.mjs'; import shelljs from 'shelljs'; const { find, sed } = shelljs; find('dist/**/*.d.ts').forEach(f => { entries.forEach(({ find, replacement }) => { sed('-i', new RegExp(' from \\'' + find.source.slice(0, -1) + '\\';$'), ' from \\'' + replacement + '\\';', f); }); sed('-i', / from '(\\.[^']+)\\.ts';$/, ' from \\'\\$1\\';', f); });\""
+    "build": "vite build"
   },
   "engines": {
     "node": ">=12.20.0"
@@ -123,8 +86,5 @@
     "typescript": "^5.9.2",
     "vite": "^7.1.5",
     "vite-plugin-dts": "^4.5.4"
-  },
-  "peerDependencies": {
-    "immer": ">=9.0.6"
   }
 }
