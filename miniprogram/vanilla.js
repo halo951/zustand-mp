@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
 const createStoreImpl = (createState) => {
   let state;
   const listeners = /* @__PURE__ */ new Set();
@@ -20,7 +22,5 @@ const createStoreImpl = (createState) => {
   return api;
 };
 const createStore = ((createState) => createState ? createStoreImpl(createState) : createStoreImpl);
-export {
-  createStore
-};
+exports.createStore = createStore;
 //# sourceMappingURL=vanilla.js.map

@@ -1,27 +1,6 @@
-const subscribeWithSelectorImpl = (fn) => (set, get, api) => {
-  const origSubscribe = api.subscribe;
-  api.subscribe = ((selector, optListener, options) => {
-    let listener = selector;
-    if (optListener) {
-      const equalityFn = options?.equalityFn || Object.is;
-      let currentSlice = selector(api.getState());
-      listener = (state) => {
-        const nextSlice = selector(state);
-        if (!equalityFn(currentSlice, nextSlice)) {
-          const previousSlice = currentSlice;
-          optListener(currentSlice = nextSlice, previousSlice);
-        }
-      };
-      if (options?.fireImmediately) {
-        optListener(currentSlice, currentSlice);
-      }
-    }
-    return origSubscribe(listener);
-  });
-  const initialState = fn(set, get, api);
-  return initialState;
-};
-const subscribeWithSelector = subscribeWithSelectorImpl;
+"use strict";
+Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
+const subscribeWithSelector = require("./subscribeWithSelector-C_IeYp1L.cjs");
 function combine(initialState, create) {
   return (...args) => Object.assign({}, initialState, create(...args));
 }
@@ -202,10 +181,8 @@ const persistImpl = (config, baseOptions) => (set, get, api) => {
   return stateFromStorage || configResult;
 };
 const persist = persistImpl;
-export {
-  combine,
-  createJSONStorage,
-  persist,
-  subscribeWithSelector
-};
+exports.subscribeWithSelector = subscribeWithSelector.subscribeWithSelector;
+exports.combine = combine;
+exports.createJSONStorage = createJSONStorage;
+exports.persist = persist;
 //# sourceMappingURL=middleware.js.map

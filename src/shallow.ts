@@ -1,1 +1,1 @@
-export { shallow } from './vanilla/shallow'
+export { shallow } from './vanilla/shallow.ts'

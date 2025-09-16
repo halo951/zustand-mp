@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite'
+import { defineConfig, LibraryFormats } from 'vite'
 import dts from 'vite-plugin-dts'
 import { resolve } from 'path'
 import fs from 'fs'
@@ -8,7 +8,7 @@ export default defineConfig(() => {
         build: {
             lib: {
                 entry: 'src/index.ts',
-                formats: ['es'] as any,
+                formats: ['cjs'] as Array<LibraryFormats>,
                 fileName(_, entryName) {
                     return `${entryName}.js`
                 }
@@ -31,7 +31,8 @@ export default defineConfig(() => {
             dts({
                 entryRoot: 'src',
                 outDir: 'miniprogram',
-                insertTypesEntry: true
+                insertTypesEntry: true,
+                tsconfigPath: './tsconfig.json'
             })
         ]
     }

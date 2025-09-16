@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
 const isIterable = (obj) => Symbol.iterator in obj;
 const hasIterableEntries = (value) => (
   // HACK: avoid checking entries type
@@ -46,12 +48,7 @@ function shallow(valueA, valueB) {
     }
     return compareIterables(valueA, valueB);
   }
-  return compareEntries(
-    { entries: () => Object.entries(valueA) },
-    { entries: () => Object.entries(valueB) }
-  );
+  return compareEntries({ entries: () => Object.entries(valueA) }, { entries: () => Object.entries(valueB) });
 }
-export {
-  shallow
-};
+exports.shallow = shallow;
 //# sourceMappingURL=shallow.js.map
