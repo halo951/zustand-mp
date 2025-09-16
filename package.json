@@ -1,6 +1,6 @@
 {
   "name": "zustand-mp",
-  "version": "5.0.8-r2",
+  "version": "5.0.8-r3",
   "description": "在原生微信小程序中, 使用 zustand 进行状态管理.",
   "type": "module",
   "main": "./miniprogram/index.js",
