@@ -13,24 +13,15 @@ export default defineConfig(() => {
                     return `${entryName}.js`
                 }
             },
-            outDir: 'miniprogram',
+            outDir: 'dist',
             minify: false,
             sourcemap: true,
-            emptyOutDir: true,
-
-            rollupOptions: {
-                input: {
-                    index: resolve(__dirname, 'src/index.ts'),
-                    middleware: resolve(__dirname, 'src/middleware.ts'),
-                    shallow: resolve(__dirname, 'src/shallow.ts'),
-                    vanilla: resolve(__dirname, 'src/vanilla.ts')
-                }
-            }
+            emptyOutDir: true
         },
         plugins: [
             dts({
                 entryRoot: 'src',
-                outDir: 'miniprogram',
+                outDir: 'types',
                 insertTypesEntry: true,
                 tsconfigPath: './tsconfig.json'
             })

@@ -1,5 +1,5 @@
-export { subscribeWithSelector } from './middleware/subscribeWithSelector.ts'
-export { combine } from './middleware/combine.ts'
+export { subscribeWithSelector } from './middleware/subscribeWithSelector'
+export { combine } from './middleware/combine'
 export {
     persist,
     createJSONStorage,
@@ -7,4 +7,4 @@ export {
     type StorageValue,
     type PersistStorage,
     type PersistOptions
-} from './middleware/persist.ts'
+} from './middleware/persist'

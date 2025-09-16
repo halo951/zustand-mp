@@ -1,3 +1,5 @@
-export * from './vanilla.ts'
+export { shallow } from './vanilla/shallow'
+export { createStorage } from './create-storage'
 
-export { subscribeWithSelector } from './middleware/subscribeWithSelector.ts'
+export * from './vanilla'
+export * from './middleware'
