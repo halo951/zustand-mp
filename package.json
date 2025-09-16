@@ -2,7 +2,7 @@
   "name": "zustand-mp",
   "description": "在原生微信小程序中, 使用 zustand 进行状态管理.",
   "type": "module",
-  "version": "5.0.8",
+  "version": "5.0.8-dev.1",
   "main": "./miniprogram/index.js",
   "types": "./miniprogram/index.d.ts",
   "miniprogram": "miniprogram",
