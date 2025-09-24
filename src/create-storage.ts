@@ -42,7 +42,7 @@ export const createStorage = <S>(
     }
     // > 可选的持久化字段.
     if (options?.pick) {
-        options.partialize = (state) => {
+        opts.partialize = (state) => {
             const serialization: Partial<S> = {}
             for (const key of options.pick ?? []) {
                 serialization[key] = state[key]
