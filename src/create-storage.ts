@@ -1,4 +1,4 @@
-import { createJSONStorage, type PersistOptions } from './middleware'
+import { createJSONStorage, type PersistOptions } from './index'
 
 declare namespace WechatMiniprogram {
     interface Wx {
@@ -21,7 +21,7 @@ declare namespace WechatMiniprogram {
 declare const wx: WechatMiniprogram.Wx
 
 /** 通过 wx api 映射持久化工具 */
-export const createStorage = <S>(
+export const createMpStorage = <S>(
     name: string,
     options?: Partial<PersistOptions<S>> & { pick?: Array<keyof S> }
 ): PersistOptions<S> => {
@@ -48,6 +48,12 @@ export const createStorage = <S>(
                 serialization[key] = state[key]
             }
             return serialization as S
+        }
+        opts.migrate = (persistedState: unknown, version: number) => {
+            if (version !== opts.version) {
+                return {} as S
+            }
+            return persistedState as S
         }
     }
     return opts
