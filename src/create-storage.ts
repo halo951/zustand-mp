@@ -28,13 +28,13 @@ export const createMpStorage = <S>(
     const opts: PersistOptions<S> = {
         name,
         storage: createJSONStorage(() => ({
-            getItem: async (name) => {
+            getItem: (name) => {
                 return wx.getStorageSync(name)
             },
-            setItem: async (name, value) => {
+            setItem: (name, value) => {
                 wx.setStorageSync(name, value)
             },
-            removeItem: async (name) => {
+            removeItem: (name) => {
                 wx.removeStorageSync(name)
             }
         })),
